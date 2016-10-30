@@ -1,30 +1,30 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
-public class P01 {
-
+public class P03 {
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringBuffer sb = new StringBuffer("Welcome to my home!");
 		try {
 			int testCase = Integer.parseInt(br.readLine());
 			for (int i = 0; i < testCase; i++) {
 				String inputString = br.readLine();
-				StringBuffer inputsb = new StringBuffer(inputString);
-				for (int j = 0; j < sb.length(); j++) {
-					for (int k = 0; k < inputsb.length(); k++) {
-						if (sb.charAt(j) == inputsb.charAt(k)) {
-							sb.deleteCharAt(j);
-							j--;
-							inputsb.deleteCharAt(k);
+				char[] isArray = inputString.toCharArray();
+				String compareString = br.readLine();
+				char[] csArray = compareString.toCharArray();
+				Arrays.sort(isArray);
+				Arrays.sort(csArray);
+				boolean result = true;
+				if(isArray.length == csArray.length){
+					for(int j=0; j<isArray.length;j++){
+						if(isArray[j] != csArray[j]){
+							result = false;
 							break;
 						}
 					}
-				}
-				int result = sb.length();
-				if (sb.length() != inputsb.length()) {
-					result += Math.abs(sb.length() - inputsb.length());
+				}else{
+					result = false;
 				}
 				System.out.println(result);
 			}
@@ -33,5 +33,4 @@ public class P01 {
 		}
 
 	}
-
 }
